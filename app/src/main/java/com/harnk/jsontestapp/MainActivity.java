@@ -1,11 +1,10 @@
 package com.harnk.jsontestapp;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.harnk.jsontestapp.DownloadData.download_complete;
+import com.harnk.jsontestapp.DownloadData.downloadComplete;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,13 +12,11 @@ import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements download_complete {
+public class MainActivity extends AppCompatActivity implements downloadComplete {
 
     public ListView list;
     public ArrayList<Countries> countries = new ArrayList<Countries>();
@@ -37,15 +34,15 @@ public class MainActivity extends AppCompatActivity implements download_complete
         adapter = new ListAdapter(this);
         list.setAdapter(adapter);
 
-        DownloadData download_data = new DownloadData((download_complete) this);
-//        download_data.download_data_from_link("http://www.kaleidosblog.com/tutorial/tutorial.json");
-        download_data.download_data_from_link("http://www.harnk.com/stellamaris/ships.json");
+        DownloadData downloadData = new DownloadData((downloadComplete) this);
+//        downloadData.downloadDataFromLink("http://www.kaleidosblog.com/tutorial/tutorial.json");
+        downloadData.downloadDataFromLink("http://www.harnk.com/stellamaris/ships.json");
 
     }
 
 
 
-    public void get_data(String data)
+    public void getData(String data)
     {
 
         try {
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements download_complete
                 Countries add=new Countries();
 //                add.name = obj.getString("country");
 //                add.code = obj.getString("code");
-                add.name = obj.getString("departure");
+                add.name = obj.getString("nav_area");
                 add.code = obj.getString("name");
 
                 countries.add(add);
